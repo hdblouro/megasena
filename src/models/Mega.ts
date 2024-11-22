@@ -1,6 +1,6 @@
-class Grupo {
+class Mega {
     concurso: number;
-    data: Date;
+    data: string;
     dez1: number;
     dez2: number;
     dez3: number;
@@ -12,7 +12,7 @@ class Grupo {
     apostas: number;
     constructor(
         concurso: number,
-        data: Date,
+        data: string,
         dez1: number,
         dez2: number,
         dez3: number,
@@ -36,4 +36,4 @@ class Grupo {
     }
 }
 
-export default Grupo;
+export default Mega;

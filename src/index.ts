@@ -15,7 +15,7 @@ data.forEach(linha => { // faz a leitura de cada linha da variável data
         //        console.log(l);
         const m = new Mega(
             parseInt(l[0]),
-            new Date(l[1]),
+            (l[1]),
             parseInt(l[2]),
             parseInt(l[3]),
             parseInt(l[4]),
@@ -33,22 +33,26 @@ data.forEach(linha => { // faz a leitura de cada linha da variável data
 //console.log(mega.length);
 //console.log(x);
 
+// Resolução do Exercício C
+// Informar quais as 6 dezenas mais sorteadas, inclusive a quantidade de vezes. 
+// Se ocorrer empate, listar todas na ordem de classificação;
+
 var dezenas: number[][] = [];
 
 for (x = 0; x < 60; x++) {
     dezenas[x] = [];
     dezenas[x].push(x+1);
-    dezenas[x].push(0)
+    dezenas[x].push(0);
 }
 
 mega.forEach(m => { // faz a leitura de cada objeto Mega do array mega colocando-o em m
     //    console.log("Concurso:", m.concurso);
-    dezenas[m.dez1 - 1][1]++;
-    dezenas[m.dez2 - 1][1]++;
-    dezenas[m.dez3 - 1][1]++;
-    dezenas[m.dez4 - 1][1]++;
-    dezenas[m.dez5 - 1][1]++;
-    dezenas[m.dez6 - 1][1]++;
+    dezenas[m.dez1 - 1][1]++; // somatório da 1ª dezena sorteada na posição específica do array
+    dezenas[m.dez2 - 1][1]++; // somatório da 2ª dezena sorteada na posição específica do array
+    dezenas[m.dez3 - 1][1]++; // somatório da 3ª dezena sorteada na posição específica do array
+    dezenas[m.dez4 - 1][1]++; // somatório da 4ª dezena sorteada na posição específica do array
+    dezenas[m.dez5 - 1][1]++; // somatório da 5ª dezena sorteada na posição específica do array
+    dezenas[m.dez6 - 1][1]++; // somatório da 6ª dezena sorteada na posição específica do array
 }); // fecha mega.forEach
 
 dezenas.sort(sort_columnWise);
@@ -72,7 +76,7 @@ function sort_columnWise(
 
 var y = 0;
 var ant = dezenas[0][0];
-
+console.log("<< Exercício C >>\n");
 for (x = 0; x < 60; x++) {
     console.log("Dezena", dezenas[x][0] , ":", dezenas[x][1]);
     if(ant != dezenas[x][0]){
@@ -82,3 +86,85 @@ for (x = 0; x < 60; x++) {
         break;
     }
 }
+
+// Resolução do Exercícios D e E
+// D - Informar o total de prêmios pagos ano a ano, desde 1996
+// E - Informar a quantidade total de ganhadores da Sena e o valor total dos prêmios pagos a eles
+
+console.log("\n<< Exercício D >>\n");
+
+var ano: number[] = [];
+var total: number = 0.0;
+var ganhadores: number = 0;
+
+for(x=0;x<29;x++){
+    ano.push(0.0);
+}
+
+mega.forEach(sorteio =>{
+    ano[parseInt(sorteio.data.substring(6,10))-1996] += sorteio.premio;
+    total += sorteio.premio;
+    ganhadores += sorteio.ganhadores;
+})
+
+for(x=0;x<29;x++){
+    console.log("Ano:",x+1996,ano[x].toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
+}
+
+console.log("\n<< Exercício E >>\n");
+
+console.log("Total Ganhadores:", ganhadores);
+console.log("Total Prêmios Pagos:", total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
+
+// Resolução do Exercício F
+// Informar os 3 maiores prêmios pagos, a quantidade de ganhadores e quanto cada um recebeu
+
+var premios: number[][] = [];
+var w = 0;
+mega.forEach(m => { // faz a leitura de cada objeto Mega do array mega colocando-o em m
+    premios[w] = []; // inicializa a linha do array premio
+    premios[w].push(m.ganhadores); // coloca na primeira coluna a quantidade de ganhadores do sorteio
+    premios[w].push(m.premio); // coloca na segunda coluna o valor do prêmio
+    w++;
+}); // fecha mega.forEach
+
+premios.sort(sort_columnWise);
+
+// lista os três primeiros maiores prêmios pagos
+
+console.log("\n<< Exercício F >>\n");
+for (var i = 0; i < 3; i++) {
+    console.log(i+1,"º Prêmio: ", premios[i][1].toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
+    console.log("Ganhadores: ",premios[i][0]);
+    if(premios[i][1] > 0){
+        console.log("Divisão: ", (premios[i][1]/premios[i][0]).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}),"\n");        
+    }
+}
+
+// Resolução do Exercício G
+// Informar o ano com maior número de apostas.
+
+console.log("\n<< Exercício G >>\n");
+
+var apostas: number[] = [];
+
+for(x=0;x<29;x++){
+    apostas.push(0);
+}
+
+mega.forEach(sorteio =>{
+    apostas[parseInt(sorteio.data.substring(6,10))-1996] += sorteio.apostas;
+})
+
+var anoapostas:number = 0;
+var quant:number = 0;
+
+for(x=0;x<29;x++){
+    if (apostas[x]>quant){
+        quant = apostas[x];
+        anoapostas = 1996+x;
+    }
+}
+
+console.log("Ano:",anoapostas);
+console.log("Apostas:", quant.toLocaleString('pt-BR', {style: 'decimal', minimumFractionDigits: 0}));
