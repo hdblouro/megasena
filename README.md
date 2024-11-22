@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <h1>Leitura Arquivo CSV Node</h1>
+=======
+<h1 align="center">Leitura Arquivo CSV Node</h1>
+>>>>>>> f8142a0 (Alteração Readme e Disponibilização Excel)
 
 >> Instalações necessárias no projeto:
 
