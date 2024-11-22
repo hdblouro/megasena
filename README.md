@@ -1,4 +1,4 @@
-<< Leitura Arquivo CSV Node >>
+</h1>Leitura Arquivo CSV Node >></h1>
 
 >> Instalações necessárias no projeto:
 
@@ -14,6 +14,8 @@ CTRL+C para encerrar arquivo bat
 
 >> Referências:
 
-Node — Como manipular arquivos usando FS, Thiago Silva, https://blog.toolboxdevops.cloud/node-crud-arquivos-142e3fb1892d
+Node — Como manipular arquivos usando FS, Thiago Silva, <https://blog.toolboxdevops.cloud/node-crud-arquivos-142e3fb1892d>
 
-4 ways to read file line by line in Node.js, Geshan Manandhar, https://geshan.com.np/blog/2021/10/nodejs-read-file-line-by-line/
+4 ways to read file line by line in Node.js, Geshan Manandhar, <https://geshan.com.np/blog/2021/10/nodejs-read-file-line-by-line/>
+
+>> Planilha Excel com resoluções dos Exercícios encontra-se no repositório do Teams.
